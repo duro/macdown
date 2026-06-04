@@ -33,6 +33,19 @@ BOOL MPShouldOpenFileInPreviewOnly(BOOL opensFilesInPreviewOnly,
                                    BOOL hasSavedSplitState);
 BOOL MPHasSavedSplitStateForAutosaveName(NSString *autosaveName);
 
+extern const CGFloat kMPMinPreferredWindowWidth;
+extern const CGFloat kMPMinPreferredWindowHeight;
+
+// Returns whether a document window with no remembered frame should be opened
+// at the user's preferred content size. True only when the feature is enabled,
+// the window has no remembered frame, and the preferred size is non-zero.
+BOOL MPShouldApplyPreferredWindowSize(BOOL enabled, BOOL hasRememberedFrame,
+                                      NSSize preferred);
+
+// Clamps a content size to a floor (kMPMinPreferredWindowWidth/Height) and a
+// ceiling (screenVisibleSize). A zero screenVisibleSize applies only the floor.
+NSSize MPClampPreferredWindowSize(NSSize size, NSSize screenVisibleSize);
+
 NSString *MPStylePathForName(NSString *name);
 NSString *MPThemePathForName(NSString *name);
 NSURL *MPHighlightingThemeURLForName(NSString *name);

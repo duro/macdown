@@ -181,6 +181,34 @@ BOOL MPHasSavedSplitStateForAutosaveName(NSString *autosaveName)
     return ([defaults objectForKey:key] != nil);
 }
 
+const CGFloat kMPMinPreferredWindowWidth = 400.0;
+const CGFloat kMPMinPreferredWindowHeight = 300.0;
+
+BOOL MPShouldApplyPreferredWindowSize(BOOL enabled, BOOL hasRememberedFrame,
+                                      NSSize preferred)
+{
+    return (enabled && !hasRememberedFrame
+            && preferred.width > 0 && preferred.height > 0);
+}
+
+NSSize MPClampPreferredWindowSize(NSSize size, NSSize screenVisibleSize)
+{
+    NSSize result = size;
+    if (result.width < kMPMinPreferredWindowWidth)
+        result.width = kMPMinPreferredWindowWidth;
+    if (result.height < kMPMinPreferredWindowHeight)
+        result.height = kMPMinPreferredWindowHeight;
+
+    // Never larger than the screen's visible area (skipped when unknown).
+    if (screenVisibleSize.width > 0 && result.width > screenVisibleSize.width)
+        result.width = screenVisibleSize.width;
+    if (screenVisibleSize.height > 0
+            && result.height > screenVisibleSize.height)
+        result.height = screenVisibleSize.height;
+
+    return result;
+}
+
 id MPGetObjectFromJavaScript(NSString *code, NSString *variableName)
 {
     if (!code.length)
