@@ -136,6 +136,9 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UZT-HE-EaK">
                                 <rect key="frame" x="16" y="12" width="285" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="PvO-nl-y05"/>
+                                </constraints>
                                 <buttonCell key="cell" type="check" title="Automatically create files for link targets" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hpF-zP-3cM">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -170,6 +173,7 @@
                         <constraint firstItem="PvO-nl-y01" firstAttribute="top" secondItem="UZT-HE-EaK" secondAttribute="bottom" constant="6" id="PvO-nl-c01"/>
                         <constraint firstItem="PvO-nl-y01" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="PvO-nl-c02"/>
                         <constraint firstAttribute="trailing" secondItem="PvO-nl-y01" secondAttribute="trailing" constant="16" id="PvO-nl-c03"/>
+                        <constraint firstItem="UZT-HE-EaK" firstAttribute="top" secondItem="WVd-hz-Dcr" secondAttribute="bottom" constant="6" id="PvO-nl-c04"/>
                         <constraint firstItem="6Nz-Ft-FbR" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="Orz-1j-PcM"/>
                         <constraint firstAttribute="trailing" secondItem="Vab-4T-IU5" secondAttribute="trailing" constant="16" id="SSy-nb-3Jk"/>
                         <constraint firstItem="hqr-gd-6gi" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="al2-wQ-QB5"/>
