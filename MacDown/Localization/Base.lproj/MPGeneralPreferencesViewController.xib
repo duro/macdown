@@ -144,6 +144,19 @@
                                     <binding destination="-2" name="value" keyPath="self.preferences.createFileForLinkTarget" id="MLt-T7-Cm3"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="PvO-nl-y01">
+                                <rect key="frame" x="16" y="-8" width="285" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="PvO-nl-y02"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Show only the preview when opening files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="PvO-nl-y03">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.preferences.opensFilesInPreviewOnly" id="PvO-nl-y04"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <constraints>
@@ -153,7 +166,10 @@
                         <constraint firstItem="hqr-gd-6gi" firstAttribute="top" secondItem="Nma-PL-ZvX" secondAttribute="top" constant="25" id="1wH-Rt-vj6"/>
                         <constraint firstAttribute="trailing" secondItem="UZT-HE-EaK" secondAttribute="trailing" constant="16" id="72H-A1-Jxe"/>
                         <constraint firstItem="WVd-hz-Dcr" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="CHN-Yp-0Ff"/>
-                        <constraint firstAttribute="bottom" secondItem="UZT-HE-EaK" secondAttribute="bottom" constant="11" id="Jkz-15-VH9"/>
+                        <constraint firstAttribute="bottom" secondItem="PvO-nl-y01" secondAttribute="bottom" constant="11" id="Jkz-15-VH9"/>
+                        <constraint firstItem="PvO-nl-y01" firstAttribute="top" secondItem="UZT-HE-EaK" secondAttribute="bottom" constant="6" id="PvO-nl-c01"/>
+                        <constraint firstItem="PvO-nl-y01" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="PvO-nl-c02"/>
+                        <constraint firstAttribute="trailing" secondItem="PvO-nl-y01" secondAttribute="trailing" constant="16" id="PvO-nl-c03"/>
                         <constraint firstItem="6Nz-Ft-FbR" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="Orz-1j-PcM"/>
                         <constraint firstAttribute="trailing" secondItem="Vab-4T-IU5" secondAttribute="trailing" constant="16" id="SSy-nb-3Jk"/>
                         <constraint firstItem="hqr-gd-6gi" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="al2-wQ-QB5"/>
