@@ -8,6 +8,7 @@
 
 #import "MPMainController.h"
 #import <MASPreferences/MASPreferencesWindowController.h>
+#import "MPPreferencesWindowController.h"
 #import <Sparkle/SUUpdater.h>
 #import "MPGlobals.h"
 #import "MPUtilities.h"
@@ -203,22 +204,9 @@ NS_INLINE void treat()
         NSString *title = NSLocalizedString(@"Preferences",
                                             @"Preferences window title.");
 
-        typedef MASPreferencesWindowController WC;
         _preferencesWindowController =
-            [[WC alloc] initWithViewControllers:vcs title:title];
-
-        // MASPreferences predates -[NSWindow toolbarStyle] (macOS 11+). Without
-        // it, a modern-SDK build defaults to the unified toolbar, which
-        // collapses the preference panes into an overflow (») menu. The
-        // expanded style restores the classic toolbar this window was designed
-        // for: a full-width row of left-aligned, always-visible items below the
-        // title. MASPreferences derives the window size from this geometry (via
-        // -frameRectForContentRect:), so it also matches older builds' per-pane
-        // sizing. (The preference style centers items and changes that geometry,
-        // which misaligns the icons and clips taller panes.)
-        if (@available(macOS 11.0, *))
-            _preferencesWindowController.window.toolbarStyle =
-                NSWindowToolbarStyleExpanded;
+            [[MPPreferencesWindowController alloc]
+                initWithViewControllers:vcs title:title];
     }
     return _preferencesWindowController;
 }
