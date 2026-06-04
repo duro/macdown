@@ -163,6 +163,13 @@ NSDictionary *MPGetDataMap(NSString *name)
     return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
 }
 
+BOOL MPShouldOpenFileInPreviewOnly(BOOL opensFilesInPreviewOnly,
+                                   BOOL hasFileURL,
+                                   BOOL hasSavedSplitState)
+{
+    return opensFilesInPreviewOnly && hasFileURL && !hasSavedSplitState;
+}
+
 id MPGetObjectFromJavaScript(NSString *code, NSString *variableName)
 {
     if (!code.length)

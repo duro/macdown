@@ -15,6 +15,30 @@
 
 @implementation MPUtilityTests
 
+- (void)testShouldOpenFileInPreviewOnly
+{
+    // Full truth table over (opensFilesInPreviewOnly, hasFileURL,
+    // hasSavedSplitState). Only true when the pref is on AND opened from a
+    // file AND no saved split state.
+    XCTAssertTrue(MPShouldOpenFileInPreviewOnly(YES, YES, NO),
+                  @"pref on + has file + no saved state should be preview-only");
+
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(NO, NO, NO),
+                   @"all off");
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(NO, NO, YES),
+                   @"pref off + no file + saved state");
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(NO, YES, NO),
+                   @"pref off + has file + no saved state");
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(NO, YES, YES),
+                   @"pref off + has file + saved state");
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(YES, NO, NO),
+                   @"new untitled doc (no file URL) should not be forced");
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(YES, NO, YES),
+                   @"pref on + no file + saved state");
+    XCTAssertFalse(MPShouldOpenFileInPreviewOnly(YES, YES, YES),
+                   @"file with remembered split state should not be forced");
+}
+
 - (void)testGetObjectFromJavaScript
 {
     NSString *code = (

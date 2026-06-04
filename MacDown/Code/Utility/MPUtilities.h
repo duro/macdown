@@ -28,6 +28,9 @@ NSString *(^MPFileNameHasExtensionProcessor(NSString *ext))(NSString *path);
 BOOL MPCharacterIsWhitespace(unichar character);
 BOOL MPCharacterIsNewline(unichar character);
 BOOL MPStringIsNewline(NSString *str);
+BOOL MPShouldOpenFileInPreviewOnly(BOOL opensFilesInPreviewOnly,
+                                   BOOL hasFileURL,
+                                   BOOL hasSavedSplitState);
 
 NSString *MPStylePathForName(NSString *name);
 NSString *MPThemePathForName(NSString *name);
