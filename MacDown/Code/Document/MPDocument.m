@@ -366,6 +366,12 @@ static void (^MPGetPreviewLoadingCompletionHandler(MPDocument *doc))()
     NSString *autosaveName = kMPDefaultAutosaveName;
     if (self.fileURL)
         autosaveName = self.fileURL.absoluteString;
+
+    // Capture whether this document already has a remembered split position,
+    // before setting the split view's autosave name (or any later layout or
+    // divider change) could create one.
+    BOOL hasSavedSplitState = MPHasSavedSplitStateForAutosaveName(autosaveName);
+
     controller.window.frameAutosaveName = autosaveName;
     self.autosaveName = autosaveName;
 
@@ -454,6 +460,15 @@ static void (^MPGetPreviewLoadingCompletionHandler(MPDocument *doc))()
     // https://github.com/uranusjr/macdown/issues/236
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self setupEditor:nil];
+        if (MPShouldOpenFileInPreviewOnly(
+                self.preferences.opensFilesInPreviewOnly,
+                (self.fileURL != nil), hasSavedSplitState))
+        {
+            // Collapse the editor pane (respects "editor on right"), then pin
+            // the toggle-back split to 50/50 so showing the editor is sensible.
+            [self toggleSplitterCollapsingEditorPane:YES];
+            self.previousSplitRatio = 0.5;
+        }
         [self redrawDivider];
         [self reloadFromLoadedString];
     }];
