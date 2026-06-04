@@ -45,4 +45,24 @@
                           @"Preferences not preserving font info correctly.");
 }
 
+- (void)testOpensFilesInPreviewOnlyPersists
+{
+    BOOL old = self.preferences.opensFilesInPreviewOnly;
+
+    self.preferences.opensFilesInPreviewOnly = YES;
+    XCTAssertTrue([self.preferences synchronize],
+                  @"Failed to synchronize user defaults.");
+    XCTAssertTrue([MPPreferences sharedInstance].opensFilesInPreviewOnly,
+                  @"opensFilesInPreviewOnly did not persist as YES.");
+
+    self.preferences.opensFilesInPreviewOnly = NO;
+    XCTAssertTrue([self.preferences synchronize],
+                  @"Failed to synchronize user defaults.");
+    XCTAssertFalse([MPPreferences sharedInstance].opensFilesInPreviewOnly,
+                   @"opensFilesInPreviewOnly did not persist as NO.");
+
+    self.preferences.opensFilesInPreviewOnly = old;     // restore prior value
+    [self.preferences synchronize];
+}
+
 @end
