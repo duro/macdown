@@ -378,10 +378,33 @@ static void (^MPGetPreviewLoadingCompletionHandler(MPDocument *doc))()
     // Perform initial resizing manually because for some reason untitled
     // documents do not pick up the autosaved frame automatically in 10.10.
     NSString *rectString = MPRectStringForAutosaveName(autosaveName);
-    if (!rectString)
-        rectString = MPRectStringForAutosaveName(kMPDefaultAutosaveName);
+    MPPreferences *prefs = [MPPreferences sharedInstance];
+    NSSize preferred = NSMakeSize(prefs.preferredWindowWidth,
+                                  prefs.preferredWindowHeight);
     if (rectString)
+    {
+        // This window already has a remembered frame — honor it (per-file
+        // window-size memory is preserved).
         [controller.window setFrameFromString:rectString];
+    }
+    else if (MPShouldApplyPreferredWindowSize(
+                 prefs.opensWindowsAtPreferredSize, NO, preferred))
+    {
+        // No remembered frame and the user set a preferred default: open at
+        // that content size, centered, clamped to the target screen.
+        NSSize screen = controller.window.screen.visibleFrame.size;
+        NSSize size = MPClampPreferredWindowSize(preferred, screen);
+        [controller.window setContentSize:size];
+        [controller.window center];
+    }
+    else
+    {
+        // Existing behavior: fall back to the last default ("Untitled") frame.
+        NSString *fallback =
+            MPRectStringForAutosaveName(kMPDefaultAutosaveName);
+        if (fallback)
+            [controller.window setFrameFromString:fallback];
+    }
 
     self.highlighter =
         [[HGMarkdownHighlighter alloc] initWithTextView:self.editor
