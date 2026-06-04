@@ -343,11 +343,9 @@
                             <constraint firstItem="NV7-zh-ydN" firstAttribute="top" secondItem="CXK-QF-WSK" secondAttribute="bottom" constant="6" symbolic="YES" id="oAM-9C-rnP"/>
                             <constraint firstItem="Hdc-ZZ-0Bg" firstAttribute="leading" secondItem="nxG-74-mdM" secondAttribute="leading" id="pGd-1r-h4g"/>
                             <constraint firstItem="B3N-s7-0vd" firstAttribute="top" secondItem="NV7-zh-ydN" secondAttribute="bottom" constant="6" symbolic="YES" id="z6Q-dF-r1X"/>
+                            <constraint firstAttribute="bottom" secondItem="hSa-rl-wPT" secondAttribute="bottom" constant="10" id="PvO-nl-z10"/>
                         </constraints>
                     </view>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="175" id="8f4-Vw-KzM"/>
-                    </constraints>
                 </box>
             </subviews>
             <constraints>
