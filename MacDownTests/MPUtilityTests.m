@@ -39,6 +39,29 @@
                    @"file with remembered split state should not be forced");
 }
 
+- (void)testHasSavedSplitStateForAutosaveName
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *name = @"macdown-unit-test-autosave-name";
+    NSString *key =
+        [NSString stringWithFormat:@"NSSplitView Subview Frames %@", name];
+
+    [defaults removeObjectForKey:key];
+    XCTAssertFalse(MPHasSavedSplitStateForAutosaveName(name),
+                   @"No saved state should report NO.");
+
+    [defaults setObject:@"0.000000, 0.000000, 200.000000, 300.000000, NO, NO"
+                 forKey:key];
+    XCTAssertTrue(MPHasSavedSplitStateForAutosaveName(name),
+                  @"Saved state should report YES.");
+
+    [defaults removeObjectForKey:key];                  // clean up
+    XCTAssertFalse(MPHasSavedSplitStateForAutosaveName(nil),
+                   @"nil name should report NO.");
+    XCTAssertFalse(MPHasSavedSplitStateForAutosaveName(@""),
+                   @"empty name should report NO.");
+}
+
 - (void)testGetObjectFromJavaScript
 {
     NSString *code = (

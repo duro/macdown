@@ -31,6 +31,7 @@ BOOL MPStringIsNewline(NSString *str);
 BOOL MPShouldOpenFileInPreviewOnly(BOOL opensFilesInPreviewOnly,
                                    BOOL hasFileURL,
                                    BOOL hasSavedSplitState);
+BOOL MPHasSavedSplitStateForAutosaveName(NSString *autosaveName);
 
 NSString *MPStylePathForName(NSString *name);
 NSString *MPThemePathForName(NSString *name);

@@ -170,6 +170,17 @@ BOOL MPShouldOpenFileInPreviewOnly(BOOL opensFilesInPreviewOnly,
     return opensFilesInPreviewOnly && hasFileURL && !hasSavedSplitState;
 }
 
+BOOL MPHasSavedSplitStateForAutosaveName(NSString *autosaveName)
+{
+    if (!autosaveName.length)
+        return NO;
+    NSString *key =
+        [NSString stringWithFormat:@"NSSplitView Subview Frames %@",
+         autosaveName];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return ([defaults objectForKey:key] != nil);
+}
+
 id MPGetObjectFromJavaScript(NSString *code, NSString *variableName)
 {
     if (!code.length)
