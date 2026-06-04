@@ -9,6 +9,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MPGeneralPreferencesViewController">
             <connections>
                 <outlet property="autoRenderingToggle" destination="6Nz-Ft-FbR" id="tso-oF-dcK"/>
+                <outlet property="useCurrentSizeButton" destination="wsz-Pf-bt0" id="wsz-Pf-ol0"/>
+                <outlet property="preferredSizeLabel" destination="wsz-Pf-lb0" id="wsz-Pf-ol1"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -160,6 +162,37 @@
                                     <binding destination="-2" name="value" keyPath="self.preferences.opensFilesInPreviewOnly" id="PvO-nl-y04"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="wsz-Pf-ck0">
+                                <rect key="frame" x="16" y="-28" width="285" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="wsz-Pf-ck1"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Open new windows at a preferred size" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wsz-Pf-ck2">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.preferences.opensWindowsAtPreferredSize" id="wsz-Pf-ck3"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wsz-Pf-bt0">
+                                <rect key="frame" x="14" y="-58" width="172" height="25"/>
+                                <buttonCell key="cell" type="push" title="Use Current Window Size" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wsz-Pf-bt1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useCurrentWindowSizeAsDefault:" target="-2" id="wsz-Pf-bt2"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wsz-Pf-lb0">
+                                <rect key="frame" x="194" y="-52" width="107" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="NO" editable="NO" drawsBackground="NO" bordered="NO" sendsActionOnEndEditing="YES" alignment="left" title="Not set" id="wsz-Pf-lb1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <constraints>
@@ -169,7 +202,7 @@
                         <constraint firstItem="hqr-gd-6gi" firstAttribute="top" secondItem="Nma-PL-ZvX" secondAttribute="top" constant="25" id="1wH-Rt-vj6"/>
                         <constraint firstAttribute="trailing" secondItem="UZT-HE-EaK" secondAttribute="trailing" constant="16" id="72H-A1-Jxe"/>
                         <constraint firstItem="WVd-hz-Dcr" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="CHN-Yp-0Ff"/>
-                        <constraint firstAttribute="bottom" secondItem="PvO-nl-y01" secondAttribute="bottom" constant="11" id="Jkz-15-VH9"/>
+                        <constraint firstAttribute="bottom" secondItem="wsz-Pf-bt0" secondAttribute="bottom" constant="11" id="Jkz-15-VH9"/>
                         <constraint firstItem="PvO-nl-y01" firstAttribute="top" secondItem="UZT-HE-EaK" secondAttribute="bottom" constant="6" id="PvO-nl-c01"/>
                         <constraint firstItem="PvO-nl-y01" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="PvO-nl-c02"/>
                         <constraint firstAttribute="trailing" secondItem="PvO-nl-y01" secondAttribute="trailing" constant="16" id="PvO-nl-c03"/>
@@ -185,6 +218,14 @@
                         <constraint firstItem="Vab-4T-IU5" firstAttribute="top" secondItem="6Nz-Ft-FbR" secondAttribute="bottom" constant="6" id="sAw-YS-Rbv"/>
                         <constraint firstItem="6Nz-Ft-FbR" firstAttribute="top" secondItem="hqr-gd-6gi" secondAttribute="bottom" constant="6" id="tnU-Pf-heR"/>
                         <constraint firstAttribute="trailing" secondItem="fjb-tU-1Kw" secondAttribute="trailing" constant="16" id="uQJ-Jy-vPP"/>
+                        <constraint firstItem="wsz-Pf-ck0" firstAttribute="top" secondItem="PvO-nl-y01" secondAttribute="bottom" constant="6" id="wsz-Pf-c10"/>
+                        <constraint firstItem="wsz-Pf-ck0" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="16" id="wsz-Pf-c11"/>
+                        <constraint firstAttribute="trailing" secondItem="wsz-Pf-ck0" secondAttribute="trailing" constant="16" id="wsz-Pf-c12"/>
+                        <constraint firstItem="wsz-Pf-bt0" firstAttribute="top" secondItem="wsz-Pf-ck0" secondAttribute="bottom" constant="6" id="wsz-Pf-c13"/>
+                        <constraint firstItem="wsz-Pf-bt0" firstAttribute="leading" secondItem="Nma-PL-ZvX" secondAttribute="leading" constant="14" id="wsz-Pf-c14"/>
+                        <constraint firstItem="wsz-Pf-lb0" firstAttribute="leading" secondItem="wsz-Pf-bt0" secondAttribute="trailing" constant="8" id="wsz-Pf-c15"/>
+                        <constraint firstItem="wsz-Pf-lb0" firstAttribute="centerY" secondItem="wsz-Pf-bt0" secondAttribute="centerY" id="wsz-Pf-c16"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wsz-Pf-lb0" secondAttribute="trailing" constant="16" id="wsz-Pf-c17"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
