@@ -392,7 +392,12 @@ static void (^MPGetPreviewLoadingCompletionHandler(MPDocument *doc))()
     {
         // No remembered frame and the user set a preferred default: open at
         // that content size, centered, clamped to the target screen.
-        NSSize screen = controller.window.screen.visibleFrame.size;
+        // The window is not on screen yet during -windowControllerDidLoadNib:,
+        // so -[NSWindow screen] can be nil; fall back to the main screen so
+        // the preferred size is still clamped to a real display.
+        NSScreen *clampScreen =
+            controller.window.screen ?: [NSScreen mainScreen];
+        NSSize screen = clampScreen.visibleFrame.size;
         NSSize size = MPClampPreferredWindowSize(preferred, screen);
         [controller.window setContentSize:size];
         [controller.window center];

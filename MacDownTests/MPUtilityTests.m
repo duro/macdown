@@ -95,6 +95,15 @@
     XCTAssertEqual(ok.width, 1000.0, @"width within bounds unchanged");
     XCTAssertEqual(ok.height, 700.0, @"height within bounds unchanged");
 
+    // Exactly at the floor passes through unchanged.
+    NSSize atFloor = MPClampPreferredWindowSize(
+        NSMakeSize(kMPMinPreferredWindowWidth, kMPMinPreferredWindowHeight),
+        screen);
+    XCTAssertEqual(atFloor.width, kMPMinPreferredWindowWidth,
+                   @"width exactly at floor is unchanged");
+    XCTAssertEqual(atFloor.height, kMPMinPreferredWindowHeight,
+                   @"height exactly at floor is unchanged");
+
     // Above the screen ceiling clamps down to the visible frame.
     NSSize big = MPClampPreferredWindowSize(NSMakeSize(5000, 5000), screen);
     XCTAssertEqual(big.width, 1440.0, @"width capped to screen");
