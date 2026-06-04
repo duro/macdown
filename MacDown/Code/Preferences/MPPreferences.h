@@ -20,6 +20,9 @@ extern NSString * const MPDidDetectFreshInstallationNotification;
 @property (assign) BOOL supressesUntitledDocumentOnLaunch;
 @property (assign) BOOL createFileForLinkTarget;
 @property (assign) BOOL opensFilesInPreviewOnly;
+@property (assign) BOOL opensWindowsAtPreferredSize;
+@property (assign) CGFloat preferredWindowWidth;
+@property (assign) CGFloat preferredWindowHeight;
 
 // Extension flags.
 @property (assign) BOOL extensionIntraEmphasis;

@@ -65,4 +65,29 @@
     [self.preferences synchronize];
 }
 
+- (void)testPreferredWindowSizePersists
+{
+    BOOL oldEnabled = self.preferences.opensWindowsAtPreferredSize;
+    CGFloat oldW = self.preferences.preferredWindowWidth;
+    CGFloat oldH = self.preferences.preferredWindowHeight;
+
+    self.preferences.opensWindowsAtPreferredSize = YES;
+    self.preferences.preferredWindowWidth = 1280.0;
+    self.preferences.preferredWindowHeight = 820.0;
+    XCTAssertTrue([self.preferences synchronize],
+                  @"Failed to synchronize user defaults.");
+
+    XCTAssertTrue([MPPreferences sharedInstance].opensWindowsAtPreferredSize,
+                  @"opensWindowsAtPreferredSize did not persist.");
+    XCTAssertEqual([MPPreferences sharedInstance].preferredWindowWidth, 1280.0,
+                   @"preferredWindowWidth did not persist.");
+    XCTAssertEqual([MPPreferences sharedInstance].preferredWindowHeight, 820.0,
+                   @"preferredWindowHeight did not persist.");
+
+    self.preferences.opensWindowsAtPreferredSize = oldEnabled;  // restore
+    self.preferences.preferredWindowWidth = oldW;
+    self.preferences.preferredWindowHeight = oldH;
+    [self.preferences synchronize];
+}
+
 @end
