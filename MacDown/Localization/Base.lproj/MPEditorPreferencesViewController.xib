@@ -243,7 +243,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box autoresizesSubviews="NO" borderType="line" title="Behavior" translatesAutoresizingMaskIntoConstraints="NO" id="6JP-Pc-JFd">
+                <box autoresizesSubviews="YES" borderType="line" title="Behavior" translatesAutoresizingMaskIntoConstraints="NO" id="6JP-Pc-JFd">
                     <rect key="frame" x="17" y="16" width="449" height="179"/>
                     <view key="contentView" id="74B-GJ-2mO">
                         <rect key="frame" x="1" y="1" width="447" height="163"/>
